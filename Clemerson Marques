@@ -1,0 +1,30 @@
+               .data
+msg:            .asciiz "Digite um número \n "    <---- Variável string
+num:            .word 1                           <---- variável int     
+dobro:         .word 1                           <---- variável int
+
+
+                .text
+
+
+main:           li $v0,4
+                la $a0,msg      <----- Mostra a mensagem na tela
+                Syscall
+  
+
+
+                li $v0,5        <----- Lê o inteiro informado pelo usuário
+                Syscall         
+
+
+                sw $v0,num         <----- Joga na variável o valor que o usuario digitou 
+                add $t0,$v0,$v0    <----- O Dobro será inserido em um temporario
+                sw $t0,dobro       <----- Joga na variável Dobro do valor do temporario
+
+
+                li $v0,1
+                move $a0, $t0
+                syscall
+
+              
+                 Jr $ra
